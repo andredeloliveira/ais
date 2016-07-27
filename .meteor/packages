@@ -28,3 +28,6 @@ lepozepo:s3
 
 ##twitter bootstrap
 twbs:bootstrap
+
+kadira:flow-router #router
+kadira:react-layout #layout render

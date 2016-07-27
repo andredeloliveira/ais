@@ -1,5 +1,5 @@
 {
-  "name": "aisa",
+  "name": "AIS Ambientes Virtuais CardBoard Shop - @0.1beta",
   "private": true,
   "scripts": {
     "start": "meteor run"

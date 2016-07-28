@@ -1,4 +1,4 @@
-import Produtos from '../imports/collections/produtos';
+import Produtos from '../../imports/collections/produtos';
 
 Meteor.methods({
   addProduto(produto) {

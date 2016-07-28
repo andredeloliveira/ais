@@ -23,10 +23,8 @@ accounts-facebook #facebook accounts
 accounts-twitter #twitter accounts
 accounts-google #g+ accounts
 ##file upload to s3
-
 lepozepo:s3
-
-##twitter bootstrap
-twbs:bootstrap
+#meterializecss framework
 materialize:materialize
-kadira:flow-router #router
+#router
+kadira:flow-router

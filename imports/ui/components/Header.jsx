@@ -6,7 +6,7 @@ export default class Header extends Component {
     return (
       <div className="navbar-fixed">
         <nav>
-          <div className="nav-wrapper">
+          <div className="nav-wrapper deep-purple lighten-4">
             <a href="#!" className="brand-logo">AIS</a>
             <ul className="right hide-on-med-and-down">
               <li><a href="">Login</a></li>

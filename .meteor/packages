@@ -28,3 +28,5 @@ lepozepo:s3
 materialize:materialize
 #router
 kadira:flow-router
+#font-awesome
+fortawesome:fontawesome

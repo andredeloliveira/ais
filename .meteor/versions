@@ -33,6 +33,7 @@ email@1.0.15
 es5-shim@4.5.13
 facebook@1.2.8
 fastclick@1.0.12
+fortawesome:fontawesome@4.5.0
 geojson-utils@1.0.9
 google@1.1.13
 hot-code-push@1.0.4

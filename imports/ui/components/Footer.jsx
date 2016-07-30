@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
+import SocialMedia from './SocialMedia';
 
 export default class Footer extends Component {
 
   render() {
     return (
-        <footer className="page-footer">
-          <div className="footer-copyright">
-            <div className="container">
-            © 2016 Copyright AIS - Ambientes Virtuais
-            <a className="grey-text text-lighten-4 right" href="#!">Comprar Agora!</a>
+        <footer className="page-footer white">
+            <div className="container row">
+              <div className="col s6">© 2016 Copyright AIS - Ambientes Virtuais</div>
+              <SocialMedia/>
             </div>
-          </div>
         </footer>
     );
   }

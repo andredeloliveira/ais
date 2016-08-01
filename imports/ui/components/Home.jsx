@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import OptionsModal from './OptionsModal';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 export default class Home extends Component {
   goToCheckout() {
@@ -30,7 +29,6 @@ export default class Home extends Component {
           <button className="waves-effect waves-light btn-large" onClick={this.goToCheckout}>Comprar</button>
         </div>
       </div>
-        <OptionsModal/>
       </div>
 
     );

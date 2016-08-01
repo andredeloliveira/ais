@@ -12,11 +12,9 @@ export default class ItemCarrinho extends Component {
   }
 
   setTotal(preco, event) {
-    console.log(preco);
      this.setState({
        total: preco * event.target.value
-     })
-    console.log(this.state.total);
+     });
   }
 
   render() {

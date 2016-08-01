@@ -12,18 +12,18 @@ export default class Signup extends Component {
     return (
       <div className="container">
         <div className="row">
-          <h3 className="grey-text">Novo comprador</h3>
-          <form class="col s12" onSubmit={this.signUp}>
+          <h3 className="grey-text">Cadastrar</h3>
+          <form className="col s12" onSubmit={this.signUp}>
             <div className="row">
               <div className="input-field col s12">
+              <label>Email</label>
                 <input id="email" name="email" type="email" className="validate"/>
-                <label for="email">Email</label>
               </div>
             </div>
             <div className="row">
               <div className="input-field col s12">
                 <input id="password" name="password" type="password" className="validate"/>
-                <label for="password">Senha</label>
+                <label>Senha</label>
               </div>
             </div>
             <div className="row">

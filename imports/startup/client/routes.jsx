@@ -8,11 +8,32 @@ import { mount } from 'react-mounter';
 import { AppLayout } from '../../ui/layouts/AppLayout';
 import Home from '../../ui/components/Home';
 import Checkout from '../../ui/components/Checkout';
+import Login from '../../ui/components/Login';
+import SignUp from '../../ui/components/SignUp';
+
 FlowRouter.route('/', {
   name: 'homepage',
   action() {
     mount(AppLayout, {
       content: <Home />
+    });
+  }
+});
+
+FlowRouter.route('/entrar', {
+  name: 'login',
+  action() {
+    mount(AppLayout, {
+      content: <Login/>
+    });
+  }
+});
+
+FlowRouter.route('/cadastro', {
+  name: 'signup',
+  action() {
+    mount(AppLayout, {
+      content: <SignUp/>
     });
   }
 });

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Accounts } from 'meteor/accounts-base';
+import { FacebookOAuth } from './OAuth';
 
 export default class Login extends Component {
   login(event) {
@@ -12,6 +13,9 @@ export default class Login extends Component {
       <div className="container">
         <div className="row">
           <h3 className="grey-text">Entrar</h3>
+          <p>redes sociais</p>
+          <FacebookOAuth/>
+          <p>ou e-mail </p>
           <form className="col s12" onSubmit={this.login}>
             <div className="row">
               <div className="input-field col s12">

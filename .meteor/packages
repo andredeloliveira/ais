@@ -22,6 +22,7 @@ accounts-password #accounts
 accounts-facebook #facebook accounts
 accounts-twitter #twitter accounts
 accounts-google #g+ accounts
+service-configuration
 ##file upload to s3
 lepozepo:s3
 #meterializecss framework

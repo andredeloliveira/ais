@@ -7,6 +7,7 @@ export class FacebookOAuth extends Component {
       if (error) {
         console.log(error);
       } else {
+        $('#optionsModal').closeModal();
         FlowRouter.go('checkout');
       }
     });

@@ -5,7 +5,17 @@ import { FacebookOAuth } from './OAuth';
 export default class Login extends Component {
   login(event) {
     event.preventDefault();
-    console.log('login fired');
+    let newUser = {
+      email: event.target.email.value,
+      password: event.target.email.password
+    }
+    Accounts.createUser(newUser, (error) => {
+      if (error) {
+        console.log(error);
+      } else {
+        $('#optionsModal').closeModal();
+      }
+    });
   }
 
   render() {
@@ -13,7 +23,7 @@ export default class Login extends Component {
       <div className="container">
         <div className="row">
           <h3 className="grey-text">Entrar</h3>
-          <p>redes sociais</p>
+          <p>usando as redes sociais</p>
           <FacebookOAuth/>
           <p>ou e-mail </p>
           <form className="col s12" onSubmit={this.login}>

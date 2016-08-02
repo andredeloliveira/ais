@@ -1,0 +1,10 @@
+{
+    "pag_seguro": {
+      "api_key": "446399969522435",
+      "api_secret": "o0NA129piT9koKLj8MyVqOn1iMs"
+    },
+    "facebook": {
+      "appId": "1068932646529852",
+      "secret": "d14a83a985fc65ccfa1f6736b6f4fc02"
+    }
+}

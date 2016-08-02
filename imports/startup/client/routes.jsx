@@ -10,6 +10,7 @@ import Home from '../../ui/components/Home';
 import Checkout from '../../ui/components/Checkout';
 import Login from '../../ui/components/Login';
 import SignUp from '../../ui/components/SignUp';
+import Orders from '../../ui/components/Orders';
 
 FlowRouter.route('/', {
   name: 'homepage',
@@ -43,6 +44,15 @@ FlowRouter.route('/checkout', {
   action() {
     mount(AppLayout, {
       content: <Checkout/>
+    });
+  }
+});
+
+FlowRouter.route('/pedidos', {
+  name: 'orders',
+  action() {
+    mount(AppLayout, {
+      content: <Orders/>
     });
   }
 });

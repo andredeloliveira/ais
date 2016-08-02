@@ -7,6 +7,15 @@ import OrdersButton from './OrdersButton';
 
 export default class OptionsModal extends Component {
 
+  logout() {
+    Meteor.logout((error) => {
+      if (error) {
+        console.log(error);
+      }
+    });
+    $('#optionsModal').closeModal();
+    FlowRouter.go('homepage')
+  }
   render() {
     modalStyle = {
       width: "100%",
@@ -26,7 +35,8 @@ export default class OptionsModal extends Component {
             </div>
           </div>
           <div className="modal-footer">
-            <a href="#!" className=" modal-action modal-close waves-effect waves-green btn left">Fechar</a>
+            <a href="" className=" modal-action modal-close waves-effect waves-green btn left">Fechar</a>
+            <a href="" className="modal-action waves-effect waves-red btn right" onClick={this.logout}>Logout</a>
           </div>
         </div>
       );
@@ -48,7 +58,7 @@ export default class OptionsModal extends Component {
             </div>
           </div>
           <div className="modal-footer">
-            <a href="#!" className=" modal-action modal-close waves-effect waves-green btn left">Fechar</a>
+            <a href="" className="modal-action modal-close waves-effect waves-green btn left">Fechar</a>
           </div>
         </div>
       );

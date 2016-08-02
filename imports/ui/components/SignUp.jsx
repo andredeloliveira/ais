@@ -5,7 +5,17 @@ export default class Signup extends Component {
 
   signUp(event) {
     event.preventDefault();
-    console.log('signup sent');
+    let newUser = {
+      email: event.target.email.value,
+      password: event.target.password.value
+    }
+    Accounts.createUser(newUser, (error) => {
+      if (error) {
+        console.log(error);
+      } else {
+        $('#optionsModal').closeModal();
+      }
+    });
   }
 
   render() {

@@ -5,17 +5,18 @@ import { FacebookOAuth } from './OAuth';
 export default class Login extends Component {
   login(event) {
     event.preventDefault();
-    let newUser = {
+    let user = {
       email: event.target.email.value,
       password: event.target.email.password
     }
-    Accounts.createUser(newUser, (error) => {
+    Meteor.loginWithPassword(user.email, user.password, (error) => {
       if (error) {
         console.log(error);
       } else {
         $('#optionsModal').closeModal();
+        FlowRouter.go('checkout');
       }
-    });
+    })
   }
 
   render() {

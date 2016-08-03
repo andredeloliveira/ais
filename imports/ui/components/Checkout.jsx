@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ItemCarrinho from './ItemCarrinho';
-
+import Shipping from './Shipping';
 export default class Checkout extends Component {
 
   render() {
@@ -23,6 +23,7 @@ export default class Checkout extends Component {
               <ItemCarrinho produto={'leite'} preco={100} />
             </tbody>
           </table>
+          <Shipping/>
           <button className="waves-effect waves-light btn-large right">Finalizar</button>
         </div>
       </div>

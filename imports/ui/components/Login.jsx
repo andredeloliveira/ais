@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Accounts } from 'meteor/accounts-base';
-import { FacebookOAuth } from './OAuth';
+import { FacebookOAuth, GoogleOAuth } from './OAuth';
 
 export default class Login extends Component {
   login(event) {
     event.preventDefault();
     let user = {
       email: event.target.email.value,
-      password: event.target.email.password
+      password: event.target.password.value
     }
     Meteor.loginWithPassword(user.email, user.password, (error) => {
       if (error) {
@@ -26,6 +26,7 @@ export default class Login extends Component {
           <h3 className="grey-text">Entrar</h3>
           <p>usando as redes sociais</p>
           <FacebookOAuth/>
+          <GoogleOAuth/>
           <p>ou e-mail </p>
           <form className="col s12" onSubmit={this.login}>
             <div className="row">

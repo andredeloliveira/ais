@@ -6,7 +6,10 @@ export default class Shipping extends Component {
   }
   render() {
     return (
-      <form className="col s12" onSubmit={this.saveShippingInfo}>
+      <form className="col s12 m5" onSubmit={this.saveShippingInfo}>
+        <div className="row">
+          <h4 className="grey-text">Adicionar Endereço de Entrega</h4>
+        </div>
         <div className="row">
           <div className="input-field col s12">
             <input id="rua" name="rua" type="text" className="validate"/>

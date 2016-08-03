@@ -1,11 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
 import Pedidos from '../../collections/orders';
 
 export default class Orders extends Component {
 
   renderPedidos() {
-    let pedidos = Pedidos.find({}).fetch();
+    let pedidos = this.props.pedidos
     if (pedidos.length === 0) {
       return (<h3 className="grey-text">Nenhum pedido efetuado</h3>)
     }
@@ -28,5 +29,13 @@ export default class Orders extends Component {
       </div>
     );
   }
-
 }
+
+export default OrdersContainer = createContainer( () => {
+  let currentUserId = Meteor.userId();
+  let ordersSubscription = Meteor.subscribe('OrdersByUser', currentUserId);
+  return {
+    isReady: ordersSubscription.ready(),
+    pedidos: Pedidos.find({}).fetch()
+  }
+}, Orders);

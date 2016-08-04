@@ -6,7 +6,7 @@ export default shippingReducer = (state={}, action) => {
     case 'addShippingInfo':
       return {
         ...state,
-        id: action.payload.id
+        feedback: action.payload
       }
     case 'getShippingInfo':
       return {

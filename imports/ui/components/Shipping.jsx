@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import addShippingInfo from '/imports/client/actions/shipping';
+import { addShippingInfo } from '/imports/client/actions/shipping';
 
 export default class Shipping extends Component {
   componentDidMount() {
@@ -24,12 +24,13 @@ export default class Shipping extends Component {
       pais: 'BRA'
     }
     let currentUser = Meteor.userId();
-    dispatch(addShippingInfo(currentUser))
+    dispatch(addShippingInfo(currentUser, endereco))
+    Materialize.toast(this.props.shippingReducer.feedback, 1000)
   }
   render() {
     const { dispatch } = this.props ;
     return (
-      <form className="col s12 m5" onSubmit={this.saveShippingInfo}>
+      <form className="col s12 m5" onSubmit={this.saveShippingInfo.bind(this, dispatch)}>
         <div className="row">
           <button onClick={this.mostrarEnderecoForm} className="waves-effect waves-light btn-large">Adicionar Endereço de Entrega</button>
         </div>
@@ -63,10 +64,15 @@ export default class Shipping extends Component {
               <input type="submit" className="waves-effect waves-light btn-large" value="salvar endereço"/>
             </div>
           </div>
-          <button className="waves-effect waves-light btn-large" onClick={this.ocultarEnderecoForm.bind(this, dispatch)}>ocultar</button>
+          <button className="waves-effect waves-light btn-large">ocultar</button>
         </div>
       </form>
     );
   }
 }
-export default connect()(Shipping)
+function mapStateToProps(state) {
+  return {
+    shippingReducer: state.shippingReducer
+  }
+}
+export default connect(mapStateToProps)(Shipping)

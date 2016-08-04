@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import addShippingInfo from '/imports/client/actions/shipping';
 
 export default class Shipping extends Component {
   componentDidMount() {
@@ -12,11 +14,20 @@ export default class Shipping extends Component {
     event.preventDefault();
     $('#endereco-form').show();
   }
-  saveShippingInfo(event) {
+  saveShippingInfo(dispatch, event) {
     event.preventDefault();
-    //  Meteor.call('saveShippingInfo')
+    const endereco = {
+      rua: event.target.rua.value,
+      numero: event.target.numero.value,
+      cidade: event.target.cidade.value,
+      estado: event.target.estado.value,
+      pais: 'BRA'
+    }
+    let currentUser = Meteor.userId();
+    dispatch(addShippingInfo(currentUser))
   }
   render() {
+    const { dispatch } = this.props ;
     return (
       <form className="col s12 m5" onSubmit={this.saveShippingInfo}>
         <div className="row">
@@ -42,7 +53,7 @@ export default class Shipping extends Component {
             </div>
             <div className="row">
               <div className="input-field col s12">
-                <input id="bairro" name="bairro" type="text" className="validate"/>
+                <input id="estado" name="estado" type="text" className="validate" placeholder="Ex. PR"/>
                 <label>Estado</label>
               </div>
             </div>
@@ -52,9 +63,10 @@ export default class Shipping extends Component {
               <input type="submit" className="waves-effect waves-light btn-large" value="salvar endereço"/>
             </div>
           </div>
-          <button className="waves-effect waves-light btn-large" onClick={this.ocultarEnderecoForm}>ocultar</button>
+          <button className="waves-effect waves-light btn-large" onClick={this.ocultarEnderecoForm.bind(this, dispatch)}>ocultar</button>
         </div>
       </form>
     );
   }
 }
+export default connect()(Shipping)

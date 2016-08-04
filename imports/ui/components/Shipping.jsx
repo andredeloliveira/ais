@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addShippingInfo } from '/imports/client/actions/shipping';
+import { addProfileInfo } from '/imports/client/actions/users';
 
 export default class Shipping extends Component {
   componentDidMount() {
@@ -16,15 +16,17 @@ export default class Shipping extends Component {
   }
   saveShippingInfo(dispatch, event) {
     event.preventDefault();
-    const endereco = {
-      rua: event.target.rua.value,
-      numero: event.target.numero.value,
-      cidade: event.target.cidade.value,
-      estado: event.target.estado.value,
-      pais: 'BRA'
+    const perfil = {
+      endereco : {
+        rua: event.target.rua.value,
+        numero: event.target.numero.value,
+        cidade: event.target.cidade.value,
+        estado: event.target.estado.value,
+        pais: 'BRA'
+      }
     }
     let currentUser = Meteor.userId();
-    dispatch(addShippingInfo(currentUser, endereco))
+    dispatch(addProfileInfo(currentUser, perfil))
     Materialize.toast(this.props.shippingReducer.feedback, 1000)
   }
   render() {

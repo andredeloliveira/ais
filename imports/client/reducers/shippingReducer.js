@@ -3,15 +3,10 @@ export default shippingReducer = (state={}, action) => {
     return {};
   }
   switch (action.type) {
-    case 'addShippingInfo':
+    case 'addProfileInfo':
       return {
         ...state,
         feedback: action.payload
-      }
-    case 'getShippingInfo':
-      return {
-        ...state,
-        info: action.payload.info
       }
     default:
       return state;

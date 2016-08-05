@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import Pedidos from '../../collections/orders';

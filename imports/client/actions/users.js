@@ -1,5 +1,5 @@
 export function addProfileInfo(userId, profile) {
-  Meteor.call('addProfileInfo', userId, profile, (error) => {
+  Meteor.call('addProfileInfo', profile, (error) => {
     if (error) {
       console.log(error);
     }

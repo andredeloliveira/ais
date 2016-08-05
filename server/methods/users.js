@@ -6,9 +6,11 @@ Meteor.methods({
       }
     })
   },
-  addProfileInfo(userId, profile) {
-    Meteor.users.update({_id: userId}, {
-      'profile': profile
+  addProfileInfo(profile) {
+    Meteor.users.update({_id: this.userId}, {
+      $set: {
+        'profile': profile
+      }
     })
   }
 });

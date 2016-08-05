@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 
 export class FacebookOAuth extends Component {

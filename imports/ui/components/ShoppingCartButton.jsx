@@ -3,8 +3,8 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 
 export default class ShoppingCartButton extends Component {
   // No numbers yet..
-  goToCheckout() {
-    FlowRouter.go('checkout');
+  goToCarrinho() {
+    FlowRouter.go('carrinho');
     $('#optionsModal').closeModal();
   }
 
@@ -20,7 +20,7 @@ export default class ShoppingCartButton extends Component {
       <div>
         <button style={buttonStyle} className="waves-effect waves-light btn"
                 aria-label="Carrinho de compras"
-                onClick={this.goToCheckout}>
+                onClick={this.goToCarrinho}>
           <i className="fa fa-shopping-cart" style={iconStyle}></i>
            carrinho
         </button>

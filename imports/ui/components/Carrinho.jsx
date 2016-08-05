@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import ItemCarrinho from './ItemCarrinho';
-import Shipping from './Shipping';
-export default class Checkout extends Component {
+import Perfil from './Perfil';
+
+export default class Carrinho extends Component {
+  goToPagamento() {
+    FlowRouter.go('pagamento');
+  }
   render() {
     return (
       <div className="container">
@@ -22,8 +27,8 @@ export default class Checkout extends Component {
               <ItemCarrinho produto={'leite'} preco={100} />
             </tbody>
           </table>
-          <Shipping/>
-          <button className="waves-effect waves-light btn-large right">Finalizar</button>
+          <Perfil/>
+          <button className="waves-effect waves-light btn-large right" onClick={this.goToPagamento}>Próximo</button>
         </div>
       </div>
     );

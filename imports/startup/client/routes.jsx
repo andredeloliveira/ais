@@ -7,10 +7,11 @@ import { mount } from 'react-mounter';
 //We also need to import all layouts and pages we'll be using for our routes
 import { AppLayout } from '../../ui/layouts/AppLayout';
 import Home from '../../ui/components/Home';
-import Checkout from '../../ui/components/Checkout';
+import Carrinho from '../../ui/components/Carrinho';
 import Login from '../../ui/components/Login';
 import SignUp from '../../ui/components/SignUp';
 import Orders from '../../ui/components/Orders';
+import Pagamento from '../../ui/components/Pagamento';
 
 FlowRouter.route('/', {
   name: 'homepage',
@@ -39,11 +40,11 @@ FlowRouter.route('/cadastro', {
   }
 });
 
-FlowRouter.route('/checkout', {
+FlowRouter.route('/carrinho', {
   name: 'checkout',
   action() {
     mount(AppLayout, {
-      content: <Checkout/>
+      content: <Carrinho/>
     });
   }
 });
@@ -56,3 +57,12 @@ FlowRouter.route('/pedidos', {
     });
   }
 });
+
+FlowRouter.route('/pagamento', {
+  name: 'pagamento',
+  action() {
+    mount(AppLayout, {
+      content: <Pagamento/>
+    });
+  }
+})

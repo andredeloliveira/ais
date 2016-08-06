@@ -12,5 +12,12 @@ Meteor.methods({
         'profile': profile
       }
     })
+  },
+  'User.addCartItem': function(productId) {
+    Meteor.users.update({_id: this.userId}, {
+      $addToSet: {
+        'profile.shoppingCart': productId
+      }
+    });
   }
 });

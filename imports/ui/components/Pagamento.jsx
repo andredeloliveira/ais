@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createContainer } from 'meteor/react-meteor-data';
 import fazerPagamento from '/imports/client/actions/pagamentos';
+
 export default class Pagamento extends Component {
   checkout() {
     this.props.dispatch(fazerPagamento())
-    Materialize.toast(this.props.pagamentoReducer.feedback, 4000)
+    Materialize.toast('', 4000)
   }
   render() {
     console.log(this.props);
@@ -18,6 +20,14 @@ export default class Pagamento extends Component {
     );
   }
 }
+
+export default ShoppingCartContainer = createContainer( () => {
+  let currentUserId = Meteor.userId();
+  let currentShoppingCart = ShoppingCart.find({userId: currentUserId});
+  return {
+
+  }
+}, Pagamento)
 
 function mapStateToProps(state) {
   return {

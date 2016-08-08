@@ -3,6 +3,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { createContainer } from 'meteor/react-meteor-data';
 import ItemCarrinho from './ItemCarrinho';
 import Perfil from './Perfil';
+import AISLoading from './AISLoading';
 import Produtos from '../../collections/produtos';
 
 export default class Carrinho extends Component {
@@ -33,7 +34,7 @@ export default class Carrinho extends Component {
               </tr>
             </thead>
             <tbody>
-              {isReady ? this.shoppingCartItems() : 'Carregando...'}
+              {isReady ? this.shoppingCartItems() : <AISLoading/>}
             </tbody>
           </table>
           <Perfil/>
@@ -44,7 +45,7 @@ export default class Carrinho extends Component {
   }
 }
 export default shoppingCartContainer = createContainer( () => {
-  if (Meteor.userId()) {
+  if (Meteor.user()) {
     let currentUser = Meteor.user();
     let produtosSubscription = Meteor.subscribe('allProducts');
     console.log(currentUser)

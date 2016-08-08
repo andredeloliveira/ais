@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import ProductItem from './ProductItem';
+import AISLoading from './AISLoading';
 import Produtos from '../../collections/produtos';
 
 export default class Home extends Component {
@@ -14,7 +15,7 @@ export default class Home extends Component {
     let { isReady } = this.props;
     return (
       <div>
-        {isReady ? this.produtos() : 'Carregando..'}
+        {isReady ? this.produtos() : <AISLoading/>}
       </div>
     );
   }

@@ -17,7 +17,7 @@ export default class Carrinho extends Component {
   }
 
   render() {
-    let { isReady } = this.props;
+    let { isReady} = this.props;
     return (
       <div className="container">
         <div className="row">
@@ -45,18 +45,20 @@ export default class Carrinho extends Component {
   }
 }
 export default shoppingCartContainer = createContainer( () => {
-  if (Meteor.user()) {
+
+    let currentUserSub = Meteor.subscribe('myShoppingCart');
     let currentUser = Meteor.user();
     let produtosSubscription = Meteor.subscribe('allProducts');
-    console.log(currentUser)
-    let produtos = currentUser.profile.shoppingCart.map( (produtoId) => {
+    let produtosId = [];
+    if (currentUserSub.ready()) {
+       produtosId = currentUser && currentUser.profile && currentUser.profile.shoppingCart;
+    }
+    let produtos = produtosId.map( (produtoId) => {
       return Produtos.findOne(produtoId);
     });
-
     return {
       produtos: produtos,
       isReady: produtosSubscription.ready(),
       currentUser: currentUser
     }
-  }
 }, Carrinho);

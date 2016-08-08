@@ -7,7 +7,7 @@ export class FacebookOAuth extends Component {
         console.log(error);
       } else {
         $('#optionsModal').closeModal();
-        FlowRouter.go('checkout');
+        FlowRouter.go('carrinho');
       }
     });
   }
@@ -31,7 +31,7 @@ export class TwitterOAuth extends Component {
       if (error) {
         console.log(error);
       } else {
-        FlowRouter.go('checkout');
+        FlowRouter.go('carrinho');
       }
     })
   }
@@ -56,7 +56,7 @@ export class GoogleOAuth extends Component {
         console.log(error);
       } else {
         //TODO(ao): figure a way to check where this action was taken to redirect to the right place;
-        FlowRouter.go('checkout');
+        FlowRouter.go('carrinho');
       }
     });
   }

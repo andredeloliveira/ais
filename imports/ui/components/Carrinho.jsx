@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { createContainer } from 'meteor/react-meteor-data';
 import ItemCarrinho from './ItemCarrinho';
 import Perfil from './Perfil';
+import Produtos from '../../collections/produtos';
 
 export default class Carrinho extends Component {
   goToPagamento() {
     FlowRouter.go('pagamento');
   }
+  shoppingCartItems() {
+    return this.props.produtos.map( (produto) => {
+      return <ItemCarrinho key={produto._id} produto={produto.nome} preco={produto.preco} />
+    });
+  }
+
   render() {
+    let { isReady } = this.props;
     return (
       <div className="container">
         <div className="row">
@@ -24,7 +33,7 @@ export default class Carrinho extends Component {
               </tr>
             </thead>
             <tbody>
-              <ItemCarrinho produto={'leite'} preco={100} />
+              {isReady ? this.shoppingCartItems() : 'Carregando...'}
             </tbody>
           </table>
           <Perfil/>
@@ -33,5 +42,20 @@ export default class Carrinho extends Component {
       </div>
     );
   }
-
 }
+export default shoppingCartContainer = createContainer( () => {
+  if (Meteor.userId()) {
+    let currentUser = Meteor.user();
+    let produtosSubscription = Meteor.subscribe('allProducts');
+    console.log(currentUser)
+    let produtos = currentUser.profile.shoppingCart.map( (produtoId) => {
+      return Produtos.findOne(produtoId);
+    });
+
+    return {
+      produtos: produtos,
+      isReady: produtosSubscription.ready(),
+      currentUser: currentUser
+    }
+  }
+}, Carrinho);

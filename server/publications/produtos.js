@@ -10,3 +10,7 @@ Meteor.publish('getProdutos', function(filter, options) {
       return Produtos.find({},options);
   }
 });
+
+Meteor.publish('allProducts', function() {
+  return Produtos.find({});
+})

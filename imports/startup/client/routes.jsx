@@ -41,7 +41,7 @@ FlowRouter.route('/cadastro', {
 });
 
 FlowRouter.route('/carrinho', {
-  name: 'checkout',
+  name: 'carrinho',
   action() {
     mount(AppLayout, {
       content: <Carrinho/>

@@ -14,7 +14,7 @@ export default class Login extends Component {
         console.log(error);
       } else {
         $('#optionsModal').closeModal();
-        FlowRouter.go('checkout');
+        FlowRouter.go('carrinho');
       }
     })
   }

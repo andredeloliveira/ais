@@ -4,14 +4,13 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { addCartItem } from '/imports/client/actions/shoppingcart';
 
 export default class ProductItem extends Component {
-  // TODO(andredeloliveira): For now it add a single product and redirects to checkout directly. Add redux to deal with multiple products
   buyItem(produtoId, event) {
     event.preventDefault();
     let { dispatch, shoppingCartReducer } = this.props;
-    console.log('userId on buyItem', Meteor.userId());
     if (Meteor.userId()) {
       dispatch(addCartItem(produtoId));
-      Materialize.toast(shoppingCartReducer.feedback, 4000);
+      Materialize.toast(shoppingCartReducer.feedback, 2000);
+      FlowRouter.go('carrinho');
     } else {
       FlowRouter.go('login');
     }
@@ -33,6 +32,7 @@ export default class ProductItem extends Component {
       paddingBottom: "45px"
     };
     const { product } =  this.props ;
+    //TODO(andredeloliveira): Gather the data to change this..
     return (
       <div style={fistImageStyle}>
         <h3 className="white-text" style={firstParagraphStyle}>Uma nova perspectiva do mundo</h3>

@@ -19,12 +19,16 @@ export default class OptionsModal extends Component {
   render() {
     modalStyle = {
       width: "100%",
-      height: "100%"
+      maxHeight: "100%"
     };
     let { currentUser } = this.props;
       return (
         <div id="optionsModal" className="modal" style={modalStyle}>
           <div className="modal-content">
+          <div className="modal-footer">
+            <a href="" className=" modal-action modal-close waves-effect waves-green red lighten-1 btn right">X</a>
+            {currentUser ? <a href="" className="modal-action waves-effect waves-red red darken-1 btn right" onClick={this.logout}>sair</a> : ''}
+          </div>
             <div className="row">
               <div className="col s12 m6">
                 {currentUser ? <ShoppingCartButton/> : <Login/>}
@@ -33,10 +37,6 @@ export default class OptionsModal extends Component {
                 {currentUser ? <OrdersButton/> : <Signup/>}
               </div>
             </div>
-          </div>
-          <div className="modal-footer">
-            <a href="" className=" modal-action modal-close waves-effect waves-green btn left">Fechar</a>
-            {currentUser ? <a href="" className="modal-action waves-effect waves-red btn right" onClick={this.logout}>Logout</a> : ''}
           </div>
         </div>
       );

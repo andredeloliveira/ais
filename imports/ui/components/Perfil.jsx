@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createContainer } from 'meteor/react-meteor-data';
 import { addProfileInfo } from '/imports/client/actions/users';
 
 export default class Perfil extends Component {
@@ -25,7 +26,10 @@ export default class Perfil extends Component {
     event.preventDefault();
     const perfil = {
       nome: event.target.nome.value,
-      telefone: event.target.telefone.value,
+      telefone: {
+        ddd: event.target.ddd.value,
+        telefone: event.target.telefone.value
+      },
       endereco : {
         rua: event.target.rua.value,
         numero: event.target.numero.value,
@@ -40,6 +44,12 @@ export default class Perfil extends Component {
   }
   render() {
     const { dispatch } = this.props ;
+    let profile = undefined;
+    let endereco = undefined;
+    if (this.props.currentUser.profile) {
+      profile  = this.props.currentUser.profile;
+      endereco  = this.props.currentUser.profile.endereco;
+    }
     return (
       <form onSubmit={this.saveShippingInfo.bind(this, dispatch)}>
         <div className="row">
@@ -50,31 +60,35 @@ export default class Perfil extends Component {
         <div id="endereco-form">
         <div className="row">
           <div className="input-field col s12">
-            <input id="nome" name="nome" type="text" className="validate"/>
+            <input id="nome" name="nome" type="text" className="validate" defaultValue={profile ? profile.nome : ''}/>
             <label>Nome</label>
           </div>
         </div>
         <div className="row">
-          <div className="input-field col s12">
-            <input id="telefone" name="telefone" type="text" className="validate"/>
+          <div className="input-field col s3">
+            <input id="ddd" name="ddd" type="text" className="validate" defaultValue={profile ? profile.telefone.ddd : ''}/>
+            <label>DDD</label>
+          </div>
+          <div className="input-field col s9">
+            <input id="telefone" name="telefone" type="text" className="validate" defaultValue={profile ? profile.telefone.telefone : ''}/>
             <label>Telefone</label>
           </div>
         </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="rua" name="rua" type="text" className="validate"/>
+              <input id="rua" name="rua" type="text" className="validate" defaultValue={endereco ? endereco.rua : ''}/>
               <label>Rua</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="numero" name="numero" type="text" className="validate"/>
+              <input id="numero" name="numero" type="text" className="validate" defaultValue={endereco ? endereco.numero : ''}/>
               <label>Numero</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="cidade" name="cidade" type="text" className="validate"/>
+              <input id="cidade" name="cidade" type="text" className="validate" defaultValue={endereco ? endereco.cidade : ''}/>
               <label>Cidade</label>
             </div>
           </div>
@@ -101,6 +115,7 @@ export default class Perfil extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return {
     shippingReducer: state.shippingReducer

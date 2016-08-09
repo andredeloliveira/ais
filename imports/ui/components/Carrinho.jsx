@@ -38,7 +38,7 @@ export default class Carrinho extends Component {
               {isReady ? this.shoppingCartItems() : <AISLoading/>}
             </tbody>
           </table>
-          <Perfil/>
+          <Perfil currentUser= {this.props.currentUser}/>
           <button className="waves-effect waves-light btn-large right" onClick={this.goToPagamento.bind(this)}>Próximo</button>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default class Carrinho extends Component {
 }
 export default shoppingCartContainer = createContainer( () => {
 
-    let currentUserSub = Meteor.subscribe('myShoppingCart');
+    let currentUserSub = Meteor.subscribe('currentUserData');
     let currentUser = Meteor.user();
     let produtosSubscription = Meteor.subscribe('allProducts');
     let produtosId = [];

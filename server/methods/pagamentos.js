@@ -1,5 +1,7 @@
 const Future = Npm.require('fibers/future');
 const parser = Npm.require('xml2json');
+import { _ } from 'lodash';
+import Produtos from '../../imports/collections/produtos';
 
 Meteor.methods({
   //tudo hardcoded pra testes, agora
@@ -13,28 +15,48 @@ Meteor.methods({
 
     pagSeguro.currency('BRL');
 
-    pagSeguro.addItem({
-           id: 1,
-           description: 'Descrição do primeiro produto',
-           amount: "4230.00",
-           quantity: 3,
-           weight: 2342
+    //get all Items from shoppingCart
+
+    let currentUser = Meteor.users.findOne(this.userId);
+    console.log(currentUser);
+    let shoppingCartProdutos = currentUser.profile.shoppingCart.map( (produtoId) => {
+      return Produtos.findOne(produtoId);
     });
+
+    shoppingCartProdutos.forEach( (produto) => {
+      pagSeguro.addItem({
+        id: produto._id,
+        description: produto.nome,
+        amount: produto.preco,
+        quantity: 1,
+        weight: 200
+      });
+    });
+
     pagSeguro.buyer({
-        name: 'José Comprador',
-        email: 'comprador@uol.com.br',
-        phoneAreaCode: '51',
-        phoneNumber: '12345678'
+        name: currentUser.profile.name,
+        email: currentUserEmail,
+        phoneAreaCode: currentUser.profile.telefone.ddd,
+        phoneNumber: currentUser.profile.telefone.telefone
     });
+
+    let currentUserEmail = '';
+    if (currentUser.services.facebook) {
+      currentUserEmail = currentUser.services.facebook.email;
+    } else if (currentUser.services.google) {
+      currentUserEmail = currentUser.services.google.email;
+    } else {
+      currentUserEmail = currentUser.emails[0].address;
+    }
     pagSeguro.shipping({
         type: 1,
-        street: 'Rua Alameda dos Anjos',
-        number: '367',
-        complement: 'Apto 307',
-        district: 'Parque da Lagoa',
-        postalCode: '01452002',
-        city: 'São Paulo',
-        state: 'RS',
+        street: currentUser.profile.endereco.rua,
+        number: currentUser.profile.endereco.numero,
+        complement: '',
+        district: '',
+        postalCode: '',
+        city: currentUser.profile.endereco.cidade,
+        state: currentUser.profile.endereco.estado,
         country: 'BRA'
     });
     let future = new Future();

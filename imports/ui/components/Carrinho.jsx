@@ -7,7 +7,8 @@ import AISLoading from './AISLoading';
 import Produtos from '../../collections/produtos';
 
 export default class Carrinho extends Component {
-  goToPagamento() {
+  goToPagamento(event) {
+    event.preventDefault();
     FlowRouter.go('pagamento');
   }
   shoppingCartItems() {
@@ -17,7 +18,8 @@ export default class Carrinho extends Component {
   }
 
   render() {
-    let { isReady} = this.props;
+    let { dispatch, isReady} = this.props;
+    console.log(this.props)
     return (
       <div className="container">
         <div className="row">
@@ -38,7 +40,7 @@ export default class Carrinho extends Component {
             </tbody>
           </table>
           <Perfil/>
-          <button className="waves-effect waves-light btn-large right" onClick={this.goToPagamento}>Próximo</button>
+          <button className="waves-effect waves-light btn-large right" onClick={this.goToPagamento.bind(this)}>Próximo</button>
         </div>
       </div>
     );

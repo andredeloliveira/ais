@@ -1,7 +1,26 @@
-export default function fazerPagamento() {
-  // por enquanto está client side pq o server não ta querendo executar
+export function emitirPagamento(dispatch) {
+    Meteor.call("pagamento", function(error, result){
+      if (error) {
+        dispatch(pagamentoError(error))
+      } else {
+        dispatch(efetuarPagamento(result))
+      }
+    });
   return {
-    type: 'pagamentoCartao',
-    payload: 'chamada feita com sucesso. Redux working, It seems you have got it '
+    type: 'REQUEST_PAYMENT_PENDING'
+  }
+}
+
+export function efetuarPagamento(result) {
+  return {
+    type: 'REQUEST_PAYMENT_FULFILLED',
+    payload: result
+  }
+}
+
+export function pagamentoError(error) {
+  return {
+    type: 'REQUEST_PAYMENT_ERROR',
+    error: error
   }
 }

@@ -36,7 +36,7 @@ export default class Perfil extends Component {
     }
     let currentUser = Meteor.userId();
     dispatch(addProfileInfo(currentUser, perfil))
-    Materialize.toast(this.props.shippingReducer.feedback, 4000)
+    Materialize.toast(this.props.shippingReducer.feedback, 2000)
   }
   render() {
     const { dispatch } = this.props ;

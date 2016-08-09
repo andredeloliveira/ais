@@ -1,7 +1,7 @@
 import { createOrder } from './orders';
 
-export function emitirPagamento(dispatch) {
-    Meteor.call("pagamento", function(error, result){
+export function emitirPagamento(dispatch, quantity) {
+    Meteor.call("pagamento", quantity, function(error, result){
       if (error) {
         dispatch(pagamentoError(error))
       } else {

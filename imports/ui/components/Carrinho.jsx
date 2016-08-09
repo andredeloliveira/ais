@@ -9,11 +9,14 @@ import Produtos from '../../collections/produtos';
 export default class Carrinho extends Component {
   goToPagamento(event) {
     event.preventDefault();
-    FlowRouter.go('pagamento');
+    console.log('came here')
+    const quantity = this.refs.quantity.getQuantity();
+    console.log('aparently not here', quantity)
+    FlowRouter.go('pagamento', {}, {quantity: quantity});
   }
   shoppingCartItems() {
     return this.props.produtos.map( (produto) => {
-      return <ItemCarrinho key={produto._id} produto={produto.nome} preco={produto.preco} />
+      return <ItemCarrinho key={produto._id} produto={produto.nome} preco={produto.preco} ref="quantity" />
     });
   }
 

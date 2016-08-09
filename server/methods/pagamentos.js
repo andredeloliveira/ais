@@ -5,7 +5,7 @@ import Produtos from '../../imports/collections/produtos';
 
 Meteor.methods({
   //tudo hardcoded pra testes, agora
-  'pagamento':function(){
+  'pagamento':function(quantity){
     import pagseguro from 'pagseguro';
     let pagSeguro = new pagseguro({
       email: Meteor.settings.pag_seguro.email,
@@ -28,7 +28,7 @@ Meteor.methods({
         id: produto._id,
         description: produto.nome,
         amount: produto.preco,
-        quantity: 1,
+        quantity: quantity,
         weight: 200
       });
     });

@@ -11,10 +11,13 @@ export default class ItemCarrinho extends Component {
     return this.state.total || this.props.preco
   }
 
+  getQuantity() {
+    return $('#quantity').val();
+  }
   setTotal(preco, event) {
-     this.setState({
+    this.setState({
        total: preco * event.target.value
-     });
+    });
   }
 
   render() {
@@ -26,7 +29,7 @@ export default class ItemCarrinho extends Component {
       <tr>
         <td>{produto}</td>
         <td>{preco}</td>
-        <td> <input type="number" name="quantidade" defaultValue="1" style={inputStyle} onChange={this.setTotal.bind(this, preco)}/></td>
+        <td> <input type="number" name="quantidade" id="quantity" defaultValue="1" style={inputStyle} onChange={this.setTotal.bind(this, preco)}/></td>
         <td>{this.getTotal()}</td>
       </tr>
     );

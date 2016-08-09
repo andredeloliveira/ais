@@ -60,9 +60,9 @@ FlowRouter.route('/pedidos', {
 
 FlowRouter.route('/pagamento', {
   name: 'pagamento',
-  action() {
+  action(params, queryParams) {
     mount(AppLayout, {
-      content: <Pagamento/>
+      content: <Pagamento queryParams={queryParams}/>
     });
   }
 })

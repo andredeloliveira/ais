@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createContainer } from 'meteor/react-meteor-data';
 import { emitirPagamento } from '/imports/client/actions/pagamentos';
-
+import AISLoading from './AISLoading';
 export default class Pagamento extends Component {
-  checkout() {
+  componentWillMount() {
     this.props.dispatch(emitirPagamento(this.props.dispatch))
-    Materialize.toast('hahahaha uooooou', 2000)
   }
   botaoPagSeguro() {
     return (
@@ -19,13 +18,18 @@ export default class Pagamento extends Component {
   }
   render() {
     let { pagamentoReducer } = this.props;
+    let pagSeguroURL = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=';
+    const anchorStyle = {
+      width: "100%"
+    };
+    if (pagamentoReducer.paymentCode) {
+      const parsedCode = JSON.parse(pagamentoReducer.paymentCode);
+      pagSeguroURL = pagSeguroURL + parsedCode.checkout.code;
+    }
     return (
       <div>
         <p className="grey-text">Clique no botão para ser redirecionado à página de pagamentos</p>
-        <div className="container">
-            <button onClick={this.checkout.bind(this)}>Pagar</button>
-        </div>
-        {pagamentoReducer.paymentCode ? <p>{pagamentoReducer.paymentCode}</p> : 'still loading....'}
+          { pagamentoReducer.paymentCode ? <a style={anchorStyle} className="waves-effect waves-light btn-large" href={pagSeguroURL}>Pagar</a> : <AISLoading/>}
       </div>
     );
   }

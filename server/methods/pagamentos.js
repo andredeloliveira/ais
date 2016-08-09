@@ -1,4 +1,5 @@
 const Future = Npm.require('fibers/future');
+const parser = Npm.require('xml2json');
 
 Meteor.methods({
   //tudo hardcoded pra testes, agora
@@ -43,8 +44,8 @@ Meteor.methods({
        if (err) {
            future.return(error);
        } else {
-        console.log(res);
-        future.return(res);
+        const json = parser.toJson(res);
+        future.return(json);
        }
     });
     return future.wait();

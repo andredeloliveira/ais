@@ -19,7 +19,6 @@ export default class Carrinho extends Component {
 
   render() {
     let { dispatch, isReady} = this.props;
-    console.log(this.props)
     return (
       <div className="container">
         <div className="row">

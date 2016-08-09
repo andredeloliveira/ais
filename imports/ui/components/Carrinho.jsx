@@ -9,9 +9,7 @@ import Produtos from '../../collections/produtos';
 export default class Carrinho extends Component {
   goToPagamento(event) {
     event.preventDefault();
-    console.log('came here')
     const quantity = this.refs.quantity.getQuantity();
-    console.log('aparently not here', quantity)
     FlowRouter.go('pagamento', {}, {quantity: quantity});
   }
   shoppingCartItems() {

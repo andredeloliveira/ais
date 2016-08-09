@@ -12,7 +12,7 @@ import Login from '../../ui/components/Login';
 import SignUp from '../../ui/components/SignUp';
 import Orders from '../../ui/components/Orders';
 import Pagamento from '../../ui/components/Pagamento';
-
+import Retorno from '../../ui/components/Retorno';
 FlowRouter.route('/', {
   name: 'homepage',
   action() {
@@ -64,5 +64,14 @@ FlowRouter.route('/pagamento', {
     mount(AppLayout, {
       content: <Pagamento queryParams={queryParams}/>
     });
+  }
+});
+
+FlowRouter.route('/retorno', {
+  name: 'retorno',
+  action(params, queryParams) {
+    mount(AppLayout, {
+      content: <Retorno queryParams={queryParams}/>
+    })
   }
 })

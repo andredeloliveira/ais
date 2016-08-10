@@ -19,7 +19,8 @@ export default class Carrinho extends Component {
   }
 
   render() {
-    let { dispatch, isReady} = this.props;
+    console.log(this.props)
+    let { dispatch, isReady, userReady} = this.props;
     return (
       <div className="container">
         <div className="row">
@@ -39,7 +40,7 @@ export default class Carrinho extends Component {
               {isReady ? this.shoppingCartItems() : <AISLoading/>}
             </tbody>
           </table>
-          <Perfil currentUser= {this.props.currentUser}/>
+          {userReady ? <Perfil currentUser= {this.props.currentUser}/> : <AISLoading/>}
           <button className="waves-effect waves-light btn-large right" onClick={this.goToPagamento.bind(this)}>Próximo</button>
         </div>
       </div>
@@ -51,7 +52,7 @@ export default shoppingCartContainer = createContainer( () => {
     let currentUserSub = Meteor.subscribe('currentUserData');
     let currentUser = Meteor.user();
     let produtosSubscription = Meteor.subscribe('allProducts');
-    let produtosId = [];
+    let produtosId = [] ;
     if (currentUserSub.ready()) {
        produtosId = currentUser && currentUser.profile && currentUser.profile.shoppingCart;
     }
@@ -61,6 +62,7 @@ export default shoppingCartContainer = createContainer( () => {
     return {
       produtos: produtos,
       isReady: produtosSubscription.ready(),
-      currentUser: currentUser
+      currentUser: currentUser,
+      userReady: currentUserSub.ready()
     }
 }, Carrinho);

@@ -40,7 +40,7 @@ export default class Perfil extends Component {
     }
     let currentUser = Meteor.userId();
     dispatch(addProfileInfo(currentUser, perfil))
-    Materialize.toast(this.props.shippingReducer.feedback, 2000)
+    Materialize.toast('Informações Atualizadas', 2000)
   }
   render() {
     const { dispatch } = this.props ;
@@ -60,35 +60,35 @@ export default class Perfil extends Component {
         <div id="endereco-form">
         <div className="row">
           <div className="input-field col s12">
-            <input id="nome" name="nome" type="text" className="validate" defaultValue={profile ? profile.nome : ''}/>
+            <input id="nome" name="nome" type="text" className="validate" required/>
             <label>Nome</label>
           </div>
         </div>
         <div className="row">
           <div className="input-field col s3">
-            <input id="ddd" name="ddd" type="text" className="validate" defaultValue={profile ? profile.telefone.ddd : ''}/>
+            <input id="ddd" name="ddd" type="text" className="validate" required/>
             <label>DDD</label>
           </div>
           <div className="input-field col s9">
-            <input id="telefone" name="telefone" type="text" className="validate" defaultValue={profile ? profile.telefone.telefone : ''}/>
+            <input id="telefone" name="telefone" type="text" className="validate" required/>
             <label>Telefone</label>
           </div>
         </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="rua" name="rua" type="text" className="validate" defaultValue={endereco ? endereco.rua : ''}/>
+              <input id="rua" name="rua" type="text" className="validate" required/>
               <label>Rua</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="numero" name="numero" type="text" className="validate" defaultValue={endereco ? endereco.numero : ''}/>
+              <input id="numero" name="numero" type="text" className="validate" required/>
               <label>Numero</label>
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="cidade" name="cidade" type="text" className="validate" defaultValue={endereco ? endereco.cidade : ''}/>
+              <input id="cidade" name="cidade" type="text" className="validate" required/>
               <label>Cidade</label>
             </div>
           </div>

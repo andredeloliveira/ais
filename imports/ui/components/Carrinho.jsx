@@ -9,10 +9,17 @@ import Produtos from '../../collections/produtos';
 export default class Carrinho extends Component {
   goToPagamento(event) {
     event.preventDefault();
-    const quantity = this.refs.quantity.getQuantity();
-    FlowRouter.go('pagamento', {}, {quantity: quantity});
+    if (this.props.currentUser.profile.endereco) {
+      const quantity = this.refs.quantity.getQuantity();
+      FlowRouter.go('pagamento', {}, {quantity: quantity});
+    } else {
+      Materialize.toast('Preencha os dados antes de avançar para a próxima etapa',5000);
+    }
   }
   shoppingCartItems() {
+    if (this.props.produtos.length === 0) {
+      return <tr><td>Carrinho Vazio</td></tr>
+    }
     return this.props.produtos.map( (produto) => {
       return <ItemCarrinho key={produto._id} produto={produto.nome} preco={produto.preco} ref="quantity" />
     });
@@ -37,7 +44,7 @@ export default class Carrinho extends Component {
               </tr>
             </thead>
             <tbody>
-              {isReady ? this.shoppingCartItems() : <AISLoading/>}
+              {isReady ? this.shoppingCartItems() : ''}
             </tbody>
           </table>
           {userReady ? <Perfil currentUser= {this.props.currentUser}/> : <AISLoading/>}
@@ -52,9 +59,9 @@ export default shoppingCartContainer = createContainer( () => {
     let currentUserSub = Meteor.subscribe('currentUserData');
     let currentUser = Meteor.user();
     let produtosSubscription = Meteor.subscribe('allProducts');
-    let produtosId = [] ;
+    let produtosId = [];
     if (currentUserSub.ready()) {
-       produtosId = currentUser && currentUser.profile && currentUser.profile.shoppingCart;
+       produtosId = currentUser && currentUser.profile && currentUser.profile.shoppingCart || [];
     }
     let produtos = produtosId.map( (produtoId) => {
       return Produtos.findOne(produtoId);

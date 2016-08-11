@@ -57,7 +57,8 @@ Meteor.methods({
         postalCode: '',
         city: currentUser.profile.endereco.cidade,
         state: currentUser.profile.endereco.estado,
-        country: 'BRA'
+        country: 'BRA',
+        cost: '10.00'
     });
     let future = new Future();
     pagSeguro.setRedirectURL("http://www.cardboards.com.br/retorno");

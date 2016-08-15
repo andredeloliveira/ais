@@ -10,7 +10,7 @@ import Home from '../../ui/components/Home';
 import Carrinho from '../../ui/components/Carrinho';
 import Login from '../../ui/components/Login';
 import SignUp from '../../ui/components/SignUp';
-import Orders from '../../ui/components/Orders';
+import UserOrders from '../../ui/components/Orders';
 import Pagamento from '../../ui/components/Pagamento';
 import Retorno from '../../ui/components/Retorno';
 FlowRouter.route('/', {
@@ -53,7 +53,7 @@ FlowRouter.route('/pedidos', {
   name: 'orders',
   action() {
     mount(AppLayout, {
-      content: <Orders/>
+      content: <UserOrders/>
     });
   }
 });
@@ -71,7 +71,7 @@ FlowRouter.route('/retorno', {
   name: 'retorno',
   action(params, queryParams) {
     mount(AppLayout, {
-      content: <Retorno queryParams={queryParams}/>
+      content: <Retorno/>
     })
   }
 })

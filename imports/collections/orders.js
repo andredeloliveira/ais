@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 
-const Pedidos = new Mongo.Collection('pedidos');
+const Orders = new Mongo.Collection('orders');
 
-export default Pedidos;
+export default Orders;

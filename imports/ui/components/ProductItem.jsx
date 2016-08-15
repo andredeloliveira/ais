@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { addCartItem } from '/imports/client/actions/shoppingcart';
+import Orders from '/imports/collections/orders';
 
 export default class ProductItem extends Component {
   buyItem(produtoId, event) {
@@ -25,7 +26,7 @@ export default class ProductItem extends Component {
     };
     let firstParagraphStyle = {
       margin: "0",
-      padding: "17%",
+      paddingBottom: "17%",
     };
     let buttonContainerStyle = {
       marginLeft: "45%",

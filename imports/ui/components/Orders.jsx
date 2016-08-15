@@ -1,40 +1,48 @@
 import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import Pedidos from '../../collections/orders';
+import Orders from '/imports/collections/orders';
 
-export default class Orders extends Component {
-
-  renderPedidos() {
-    let pedidos = this.props.pedidos
-    if (pedidos.length === 0) {
-      return (<h3 className="grey-text">Nenhum pedido efetuado</h3>)
+export default class UserOrders extends Component {
+  ordersRender() {
+    if (this.props.orders.length === 0) {
+      return ( <tr><td>Não há pedidos</td></tr> );
     }
-    return pedidos.map((pedido) => {
+    return this.props.orders.map( (order) => {
       return (
-        <div>
-          <p>pedido._id</p>
-          <p>pedido._valor</p>
-          <p>pedido.status</p>
-        </div>
+        <tr>
+          <td>{order.transactionCode}</td>
+          <td>{order.status}</td>
+        </tr>
       )
     })
   }
-
   render() {
+    const { isReady } = this.props;
     return (
       <div className="container">
         <h4 className="grey-text">Meus pedidos</h4>
-        {this.renderPedidos()}
+        <table>
+          <thead>
+            <tr>
+            <th data-field="id">Código transação</th>
+            <th data-field="price">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {isReady ? this.ordersRender() : ''}
+          </tbody>
+        </table>
       </div>
     );
   }
 }
 
-export default OrdersContainer = createContainer( () => {
-  let currentUserId = Meteor.userId();
-  let ordersSubscription = Meteor.subscribe('OrdersByUser', currentUserId);
+export default ordersContainer = createContainer( () => {
+  const currentUserId = Meteor.userId();
+  let ordersSub = Meteor.subscribe('ordersByUser');
+  let orders = Orders.find({userId: currentUserId}).fetch();
   return {
-    isReady: ordersSubscription.ready(),
-    pedidos: Pedidos.find({}).fetch()
+    isReady: ordersSub.ready(),
+    orders: orders
   }
-}, Orders);
+}, UserOrders);

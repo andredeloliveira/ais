@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createContainer } from 'meteor/react-meteor-data';
-import { bindActionCreators } from 'redux';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { emitirPagamento } from '/imports/client/actions/pagamentos';
 import AISLoading from './AISLoading';
@@ -9,7 +7,6 @@ import AISLoading from './AISLoading';
 export default class Pagamento extends Component {
   componentWillMount() {
     const quantity = FlowRouter.getQueryParam('quantity');
-    console.log(quantity);
     this.props.dispatch(emitirPagamento(this.props.dispatch, quantity))
   }
   render() {

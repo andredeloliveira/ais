@@ -8,8 +8,8 @@ Meteor.methods({
   'pagamento':function(quantity){
     import pagseguro from 'pagseguro';
     let pagSeguro = new pagseguro({
-      email: Meteor.settings.pag_seguro.email,
-      token: Meteor.settings.pag_seguro.token,
+      email: Meteor.settings.pag_seguro_sandbox.email,
+      token: Meteor.settings.pag_seguro_sandbox.token,
       mode: 'sandbox'
     });
 
@@ -58,11 +58,11 @@ Meteor.methods({
         city: currentUser.profile.endereco.cidade,
         state: currentUser.profile.endereco.estado,
         country: 'BRA',
-        cost: '10.00'
+        shippingCost: '10.00'
     });
     let future = new Future();
-    pagSeguro.setRedirectURL("http://www.cardboards.com.br/retorno");
-    pagSeguro.setNotificationURL("http://www.cardboards.com.br/notificacao");
+    pagSeguro.setRedirectURL("http://localhost:3000/retorno");
+    pagSeguro.setNotificationURL("http://localhost:3000/notificacao");
     pagSeguro.send(function(err, res) {
        if (err) {
            future.return(error);

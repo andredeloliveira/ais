@@ -61,8 +61,8 @@ Meteor.methods({
         shippingCost: '10.00'
     });
     let future = new Future();
-    pagSeguro.setRedirectURL("http://localhost:3000/retorno");
-    pagSeguro.setNotificationURL("http://localhost:3000/notificacao");
+    pagSeguro.setRedirectURL("http://www.cardboards.com.br/retorno");
+    pagSeguro.setNotificationURL("http://www.cardboards.com.br/notificacao");
     pagSeguro.send(function(err, res) {
        if (err) {
            future.return(error);

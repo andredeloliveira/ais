@@ -8,9 +8,9 @@ Meteor.methods({
   'pagamento':function(quantity){
     import pagseguro from 'pagseguro';
     let pagSeguro = new pagseguro({
-      email: Meteor.settings.pag_seguro_sandbox.email,
-      token: Meteor.settings.pag_seguro_sandbox.token,
-      mode: 'sandbox'
+      email: Meteor.settings.pag_seguro.email,
+      token: Meteor.settings.pag_seguro.token,
+      mode: 'payment'
     });
 
     pagSeguro.currency('BRL');

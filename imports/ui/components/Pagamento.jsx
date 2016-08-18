@@ -12,7 +12,7 @@ export default class Pagamento extends Component {
   render() {
     console.log('Props inside pagamento',this.props);
     let { pagamentoReducer } = this.props;
-    let pagSeguroURL = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html?code=';
+    let pagSeguroURL = 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=';
     const anchorStyle = {
       width: "100%"
     };

@@ -1,0 +1,7 @@
+{
+  "galaxy.meteor.com": {
+     "env": {
+       "MONGO_URL": " mongodb://admin:aisadmin!@ds161475.mlab.com:61475/cardboards" 
+     }
+   }
+}

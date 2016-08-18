@@ -11,7 +11,6 @@ export default class Perfil extends Component {
     })
   }
   componentDidMount() {
-    $('#endereco-form').hide();
     $('#estado').material_select();
   }
   ocultarEnderecoForm(event) {
@@ -38,9 +37,19 @@ export default class Perfil extends Component {
         pais: 'BRA'
       }
     }
-    let currentUser = Meteor.userId();
-    dispatch(addProfileInfo(currentUser, perfil))
-    Materialize.toast('Informações Atualizadas', 2000)
+    if (perfil.telefone.ddd.length !== 2) {
+      if (! parseInt(perfil.telefone.ddd)) {
+        Materialize.toast('DDD inválido. Insira um DDD válido', 2000)
+      }
+    } else if (perfil.telefone.telefone.length < 8 || perfil.telefone.telefone.length > 9) {
+      if (! parseInt(perfil.telefone.telefone)) {
+        Materialize.toast('Telefone inválido. Insira um número que seja válido', 2000);
+      }
+    } else {
+      let currentUser = Meteor.userId();
+      dispatch(addProfileInfo(currentUser, perfil))
+      Materialize.toast('Informações Atualizadas', 2000)
+    }
   }
   render() {
     const { dispatch } = this.props ;
@@ -52,11 +61,6 @@ export default class Perfil extends Component {
     }
     return (
       <form onSubmit={this.saveShippingInfo.bind(this, dispatch)}>
-        <div className="row">
-          <div className="col s12 m6">
-            <button onClick={this.mostrarEnderecoForm} className="waves-effect waves-light btn-large">+ info entrega</button>
-          </div>
-        </div>
         <div id="endereco-form">
         <div className="row">
           <div className="input-field col s12">
@@ -104,11 +108,6 @@ export default class Perfil extends Component {
             <div className="input-field col s6 left">
               <input type="submit" className="waves-effect waves-light btn-large" value="salvar informações"/>
             </div>
-          </div>
-          <div className="row">
-          <div className="col s12">
-            <button className="waves-effect waves-light btn-large">ocultar</button>
-          </div>
           </div>
         </div>
       </form>

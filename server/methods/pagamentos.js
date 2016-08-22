@@ -1,6 +1,5 @@
 const Future = Npm.require('fibers/future');
 const parser = Npm.require('xml2json');
-import { _ } from 'lodash';
 import Produtos from '../../imports/collections/produtos';
 
 Meteor.methods({

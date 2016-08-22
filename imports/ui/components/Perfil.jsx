@@ -39,9 +39,10 @@ export default class Perfil extends Component {
     }
     if (perfil.telefone.ddd.length !== 2) {
       if (! parseInt(perfil.telefone.ddd)) {
-        Materialize.toast('DDD inválido. Insira um DDD válido', 2000)
+        Materialize.toast('DDD inválido. Insira um DDD válido', 2000);
       }
     } else if (perfil.telefone.telefone.length < 8 || perfil.telefone.telefone.length > 9) {
+      Materialize.toast('Telefone inválido. Insira um número que seja válido', 2000);
       if (! parseInt(perfil.telefone.telefone)) {
         Materialize.toast('Telefone inválido. Insira um número que seja válido', 2000);
       }
@@ -70,11 +71,11 @@ export default class Perfil extends Component {
         </div>
         <div className="row">
           <div className="input-field col s3">
-            <input id="ddd" name="ddd" type="text" className="validate" required/>
+            <input id="ddd" name="ddd" type="text" className="validate" maxLength="2" required/>
             <label>DDD</label>
           </div>
           <div className="input-field col s9">
-            <input id="telefone" name="telefone" type="text" className="validate" required/>
+            <input id="telefone" name="telefone" type="text" className="validate" maxLength="9" required/>
             <label>Telefone</label>
           </div>
         </div>

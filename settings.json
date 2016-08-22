@@ -1,7 +1,31 @@
 {
-  "galaxy.meteor.com": {
-     "env": {
-       "MONGO_URL": " mongodb://admin:aisadmin!@ds161475.mlab.com:61475/cardboards" 
+  "public": {
+    "pag_seguro_sandbox": {
+      "email": "yurisefrin@gmail.com",
+      "token": "1BF2629E4BC04CA990D7467263CA4BA8"
+    }
+  },
+    "pag_seguro_sandbox": {
+      "email": "yurisefrin@gmail.com",
+      "token": "1BF2629E4BC04CA990D7467263CA4BA8"
+    },
+    "pag_seguro": {
+      "email": "yurisefrin@gmail.com",
+      "token": "19344D2CADD74AB9A87579AD50809664"
+    },
+    "facebook": {
+      "appId": "1068932646529852",
+      "secret": "d14a83a985fc65ccfa1f6736b6f4fc02"
+    },
+    "google": {
+      "clientId": "171711817153-8ag2jprqoaios0rh5lhf0ftpghit1dj1.apps.googleusercontent.com",
+      "secret": "fLFztXeDkcKuPVt4LMJzMh3N"
+    },
+    "galaxy.meteor.com": {
+       "env": {
+         "MONGO_URL": "mongodb://admin:aisadmin!@ds161475.mlab.com:61475/cardboards",
+         "ROOT_URL": "http://www.cardboards.com.br"
+       }
      }
-   }
 }
+

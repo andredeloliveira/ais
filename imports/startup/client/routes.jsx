@@ -13,6 +13,7 @@ import SignUp from '../../ui/components/SignUp';
 import UserOrders from '../../ui/components/Orders';
 import Pagamento from '../../ui/components/Pagamento';
 import Retorno from '../../ui/components/Retorno';
+import Admin from '../../ui/components/Admin';
 FlowRouter.route('/', {
   name: 'homepage',
   action() {
@@ -26,7 +27,7 @@ FlowRouter.route('/entrar', {
   name: 'login',
   action() {
     mount(AppLayout, {
-      content: <Login/>
+      content: <Login />
     });
   }
 });
@@ -35,7 +36,7 @@ FlowRouter.route('/cadastro', {
   name: 'signup',
   action() {
     mount(AppLayout, {
-      content: <SignUp/>
+      content: <SignUp />
     });
   }
 });
@@ -44,7 +45,7 @@ FlowRouter.route('/carrinho', {
   name: 'carrinho',
   action() {
     mount(AppLayout, {
-      content: <Carrinho/>
+      content: <Carrinho />
     });
   }
 });
@@ -53,7 +54,7 @@ FlowRouter.route('/pedidos', {
   name: 'orders',
   action() {
     mount(AppLayout, {
-      content: <UserOrders/>
+      content: <UserOrders />
     });
   }
 });
@@ -62,7 +63,7 @@ FlowRouter.route('/pagamento', {
   name: 'pagamento',
   action(params, queryParams) {
     mount(AppLayout, {
-      content: <Pagamento queryParams={queryParams}/>
+      content: <Pagamento queryParams={queryParams} />
     });
   }
 });
@@ -71,7 +72,21 @@ FlowRouter.route('/retorno', {
   name: 'retorno',
   action(params, queryParams) {
     mount(AppLayout, {
-      content: <Retorno/>
+      content: <Retorno />
     })
+  }
+});
+
+FlowRouter.route('/core-app', {
+  action(params, queryParams) {
+    // let user = Meteor.user();
+    // if (Meteor.userId() && user.profile.name !== 'admin') {
+    //   alert('Você não está autorizado a entrar nessa página')
+    // } else {
+      mount(AppLayout, {
+        content: <Admin />
+      });
+    // }
+
   }
 })

@@ -14,6 +14,8 @@ import UserOrders from '../../ui/components/Orders';
 import Pagamento from '../../ui/components/Pagamento';
 import Retorno from '../../ui/components/Retorno';
 import Admin from '../../ui/components/Admin';
+import ProductsList from '../../ui/components/admin/ProductsList';
+
 FlowRouter.route('/', {
   name: 'homepage',
   action() {
@@ -78,6 +80,7 @@ FlowRouter.route('/retorno', {
 });
 
 FlowRouter.route('/core-app', {
+  name: 'admin',
   action(params, queryParams) {
     // let user = Meteor.user();
     // if (Meteor.userId() && user.profile.name !== 'admin') {
@@ -87,6 +90,14 @@ FlowRouter.route('/core-app', {
         content: <Admin />
       });
     // }
+  }
+});
 
+FlowRouter.route('/core-app/products-list', {
+  name: 'products-list',
+  action(params, queryParams) {
+    mount(AppLayout, {
+      content: <ProductsList />
+    })
   }
 })

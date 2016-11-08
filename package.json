@@ -7,7 +7,6 @@
   "dependencies": {
     "axios": "^0.13.1",
     "classnames": "^2.2.5",
-    "fibers": "^1.0.13",
     "meteor-node-stubs": "~0.2.0",
     "pagseguro": "^0.1.0",
     "photoswipe": "~4.1.1",

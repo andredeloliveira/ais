@@ -1,4 +1,4 @@
-const Future = Npm.require('fibers/future');
+
 const parser = Npm.require('xml2json');
 import Produtos from '../../imports/collections/produtos';
 
@@ -62,14 +62,15 @@ Meteor.methods({
     let future = new Future();
     pagSeguro.setRedirectURL("http://www.cardboards.com.br/retorno");
     pagSeguro.setNotificationURL("http://www.cardboards.com.br/notificacao");
-    pagSeguro.send(function(err, res) {
-       if (err) {
-           future.return(error);
-       } else {
-        const json = parser.toJson(res);
-        future.return(json);
-       }
-    });
-    return future.wait();
-  }
-});
+    return Async.runSync( (done) => {
+      pagSeguro.send(function(err, res) {
+        if (err) {
+          done(null, error)
+          const json = parser.toJson(res);
+         } else {
+          done(null, json);
+         }
+        });
+     })
+   }
+ });

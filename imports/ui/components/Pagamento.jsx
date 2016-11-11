@@ -4,7 +4,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { emitirPagamento } from '/imports/client/actions/pagamentos';
 import AISLoading from './AISLoading';
 
-export default class Pagamento extends Component {
+export  class Pagamento extends Component {
   componentWillMount() {
     const quantity = FlowRouter.getQueryParam('quantity');
     this.props.dispatch(emitirPagamento(this.props.dispatch, quantity))

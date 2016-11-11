@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import ProductItem from './ProductItem';
+import { ProductItem } from './ProductItem';
 import AISLoading from './AISLoading';
 import Produtos from '../../collections/produtos';
 
-export default class Home extends Component {
+export  class Home extends Component {
   produtos() {
     return this.props.produtos.map( (produto) => {
       return <ProductItem product={produto} key={produto._id} />

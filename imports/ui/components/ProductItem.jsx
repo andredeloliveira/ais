@@ -4,7 +4,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { addCartItem } from '/imports/client/actions/shoppingcart';
 import Orders from '/imports/collections/orders';
 
-export default class ProductItem extends Component {
+export  class ProductItem extends Component {
   buyItem(produtoId, event) {
     event.preventDefault();
     let { dispatch, shoppingCartReducer } = this.props;

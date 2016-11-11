@@ -5,7 +5,7 @@ import Signup from './SignUp';
 import ShoppingCartButton from './ShoppingCartButton';
 import OrdersButton from './OrdersButton';
 
-export default class OptionsModal extends Component {
+export  class OptionsModal extends Component {
   //cd275555
   logout() {
     Meteor.logout((error) => {

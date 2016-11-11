@@ -1,5 +1,5 @@
 
-const parser = Npm.require('xml2json');
+const parser = require('xml2json');
 import Produtos from '../../imports/collections/produtos';
 
 Meteor.methods({
@@ -59,15 +59,14 @@ Meteor.methods({
         country: 'BRA',
         shippingCost: '10.00'
     });
-    let future = new Future();
     pagSeguro.setRedirectURL("http://www.cardboards.com.br/retorno");
     pagSeguro.setNotificationURL("http://www.cardboards.com.br/notificacao");
     return Async.runSync( (done) => {
       pagSeguro.send(function(err, res) {
         if (err) {
           done(null, error)
-          const json = parser.toJson(res);
          } else {
+          const json = parser.toJson(res);
           done(null, json);
          }
         });

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import Orders from '/imports/collections/orders';
 
-export default class UserOrders extends Component {
+export  class UserOrders extends Component {
   ordersRender() {
     if (this.props.orders.length === 0) {
       return ( <tr><td>Não há pedidos</td></tr> );

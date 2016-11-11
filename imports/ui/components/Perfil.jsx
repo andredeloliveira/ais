@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createContainer } from 'meteor/react-meteor-data';
 import { addProfileInfo } from '/imports/client/actions/users';
 
-export default class Perfil extends Component {
+export  class Perfil extends Component {
   estadosOptions() {
     let estados = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','TO','SE']
     return estados.map( (sigla, index) => {

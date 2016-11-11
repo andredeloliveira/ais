@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { createContainer } from 'meteor/react-meteor-data';
-import ItemCarrinho from './ItemCarrinho';
-import Perfil from './Perfil';
+import { ItemCarrinho } from './ItemCarrinho';
+import { Perfil } from './Perfil';
 import AISLoading from './AISLoading';
 import Produtos from '../../collections/produtos';
 
-export default class Carrinho extends Component {
+export  class Carrinho extends Component {
   goToPagamento(event) {
     event.preventDefault();
     if (this.props.currentUser.profile.endereco) {

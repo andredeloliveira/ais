@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { createOrder } from '/imports/client/actions/orders';
 
-export default class Retorno extends Component {
+export  class Retorno extends Component {
   componentWillMount() {
     let transactionCode = FlowRouter.getQueryParam('pagSeguroId');
     const { dispatch }  = this.props;
